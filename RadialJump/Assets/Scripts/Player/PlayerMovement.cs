@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Vector3 customGravity;
 
+    public float rotationGrav;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Basic Ground Check (pas optimal mais fonctionnel pour un debut, voir a remplacer le raycast par un spherecast)
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, -transform.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         CheckInputs();
         SpeedControl();
@@ -108,5 +110,31 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
             rb.AddForce(customGravity * gravityMultiplier);
         }
+    }
+
+    public void setCustomGravity(Vector3 newGravity)
+    {
+        if (Vector3.Distance(customGravity, newGravity) < 0.1f)
+            return;
+
+        customGravity = newGravity;
+        StartCoroutine(ChangeGravityOrientation());
+    }
+
+    IEnumerator ChangeGravityOrientation()
+    {
+        
+        Vector3 gravityUp = -customGravity.normalized;
+        Quaternion targetRotation = Quaternion.FromToRotation(transform.up, gravityUp) * transform.rotation;
+        orientation.up = gravityUp;
+        float t = 0;
+        while(t < 1)
+        {
+            t += rotationGrav * Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
+            //orientation.up = transform.up;
+            yield return null;
+        }
+        transform.rotation = targetRotation;
     }
 }

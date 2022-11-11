@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Reseter : Equipment
 {
@@ -31,7 +32,11 @@ public class Reseter : Equipment
 
         loadingImage.fillAmount = loadingTime;
         if (loadingTime >= 1)
+        {
             Debug.Log("RESET LEVEL");
+            SceneManager.LoadScene(0); // Temporaire, il faudra creer un etat initial a chaque salle et le charger
+        }
+           
     }
 
     public override void sortirEquipment()
