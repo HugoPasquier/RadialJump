@@ -110,4 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723db59be147cca4d9a018a17fb2e7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: CheckPointGravity
+  mat: {fileID: 2100000, guid: bfaeb676448196540902dc8a56292a1d, type: 2}
+  tagEffect: CPGravity
   gravity: {x: 0, y: 0, z: 9.81}
+  gravityMagnitude: 9.81

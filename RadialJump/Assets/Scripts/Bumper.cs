@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bumper : MonoBehaviour
+public class Bumper : TileEffect
 {
-    public float bumpForce;
+    public float bumpForce = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class Bumper : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * bumpForce, ForceMode.Impulse);
+            //collision.gameObject.AddComponent<Bumper>();
         }
     }
 }
