@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+
     Vector3 customGravity;
 
     public float rotationGrav;
@@ -80,12 +81,15 @@ public class PlayerMovement : MonoBehaviour
 
     void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = (new Vector3(1, 1, 1) - new Vector3(Mathf.Abs(orientation.up.x), Mathf.Abs(orientation.up.y), Mathf.Abs(orientation.up.z)) );
+        flatVel.x *= rb.velocity.x;
+        flatVel.y *= rb.velocity.y;
+        flatVel.z *= rb.velocity.z;
 
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            rb.velocity = new Vector3(Mathf.Abs(limitedVel.x) > 0.01f ? limitedVel.x : rb.velocity.x, Mathf.Abs(limitedVel.y) > 0.01f ? limitedVel.y : rb.velocity.y, Mathf.Abs(limitedVel.z) > 0.01f ? limitedVel.z : rb.velocity.z);
         }
     }
 
@@ -123,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ChangeGravityOrientation()
     {
-        
         Vector3 gravityUp = -customGravity.normalized;
         Quaternion targetRotation = Quaternion.FromToRotation(transform.up, gravityUp) * transform.rotation;
         orientation.up = gravityUp;
@@ -132,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         {
             t += rotationGrav * Time.deltaTime;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
-            //orientation.up = transform.up;
             yield return null;
         }
         transform.rotation = targetRotation;
