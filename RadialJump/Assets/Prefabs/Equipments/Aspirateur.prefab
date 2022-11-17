@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2d0ec5750a44346b909304f2c31f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 3239289320462872970}
   canBeUse: 0
   hand: {fileID: 0}
   twoHanded: 1
@@ -53,7 +54,6 @@ MonoBehaviour:
   crossHair: {fileID: 6789998281885285968, guid: fa899593d22f80c4f865384265d4f040,
     type: 3}
   label: Aspi
-  model: {fileID: 3239289320462872970}
   cadenceCD: 0.2
   portee: 0
   audioSource: {fileID: 4781135678584193655}
