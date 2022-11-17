@@ -7,6 +7,7 @@ TagManager:
   - CPGravity
   - Bumper
   - WhiteTile
+  - Pickable
   layers:
   - Default
   - TransparentFX
