@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Basic Ground Check (pas optimal mais fonctionnel pour un debut, voir a remplacer le raycast par un spherecast)
+        Debug.DrawLine(transform.position, transform.position - (transform.up * (playerHeight * 0.5f + 0.2f)), Color.red, 1);
+
         grounded = Physics.Raycast(transform.position, -transform.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         CheckInputs();
