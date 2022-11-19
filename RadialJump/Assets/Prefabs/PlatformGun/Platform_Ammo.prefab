@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f3a344c6528cc418fa6dd0c3a5d7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 6676086521593475797}
   _platformScalable: {fileID: -2733196744454865654, guid: 982c1307dc4bd0840910c4ba083d8944,
     type: 3}
+  _spawnOffset: 0.2
+  Rigidbody: {fileID: 6676086521593475797}
 --- !u!65 &4270775138940267386
 BoxCollider:
   m_ObjectHideFlags: 0
