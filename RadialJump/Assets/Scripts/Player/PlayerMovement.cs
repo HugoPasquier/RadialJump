@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -20,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
+    public float groundRadius = 0.05f;
     bool grounded;
 
     [SerializeField]
@@ -50,9 +50,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Basic Ground Check (pas optimal mais fonctionnel pour un debut, voir a remplacer le raycast par un spherecast)
-        grounded = Physics.Raycast(transform.position, -transform.up, playerHeight * 0.5f + 0.2f, whatIsGround);
-
+        var origin = transform.position - transform.up * playerHeight / 2.0f;
+        grounded = Physics.CheckSphere(origin, groundRadius, whatIsGround);
+        
         CheckInputs();
         SpeedControl();
 
@@ -108,10 +108,10 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed * 10f), ForceMode.Force);
         else
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed * 10f * airMultiplier), ForceMode.Force);
             rb.AddForce(customGravity * gravityMultiplier);
         }
     }
@@ -138,5 +138,12 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         transform.rotation = targetRotation;
+    }
+
+    private void OnDrawGizmos()
+    {
+        var origin = transform.position - transform.up * playerHeight / 2.0f;
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(origin, groundRadius);
     }
 }
