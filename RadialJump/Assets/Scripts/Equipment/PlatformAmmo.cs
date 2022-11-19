@@ -37,7 +37,9 @@ public class PlatformAmmo : MonoBehaviour
 
     private void CreatePlatform(Vector3 origin, Vector3 normal)
     {
-        Instantiate(_platformScalable, origin, _platformScalable.transform.rotation);
+        var clone = Instantiate(_platformScalable, origin, _platformScalable.transform.rotation);
+        // Change forward direction of plateform scalable based on surface hit normal
+        clone.transform.forward = normal;
         Destroy(gameObject);
     }
 }
