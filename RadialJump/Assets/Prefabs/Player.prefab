@@ -1104,8 +1104,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 433257881732699501}
     m_Modifications:
     - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
+      propertyPath: portee
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
+      propertyPath: crossHair
+      value: 
+      objectReference: {fileID: 6789998281885285968, guid: 69752c51219a40642b3d100a20a88164,
+        type: 3}
+    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
       propertyPath: _ammosContainer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
+      propertyPath: canBeShot.m_Bits
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8603830258680296810, guid: f5622f1b13d7cdc4683de0adb49450ac,
         type: 3}

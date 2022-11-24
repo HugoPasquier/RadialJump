@@ -41,15 +41,16 @@ public class PlatformAmmo : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, _target.Position, Time.deltaTime * _speed);
         if (Vector3.Distance(_thisTransform.position, _target.Position) < _targetSpawnRadius)
         {
-            CreatePlatform(_target.Position, _target.Normal);
+            CreatePlatform(_target);
         }
     }
 
-    private void CreatePlatform(Vector3 origin, Vector3 normal)
+    private void CreatePlatform(in Target target)
     {
-        var clone = Instantiate(_platformScalable, origin, _platformScalable.transform.rotation);
+        var clone = Instantiate(_platformScalable, target.Position, _platformScalable.transform.rotation);
         // Change forward direction of plateform scalable based on surface hit normal
-        clone.transform.forward = normal;
+        clone.transform.forward = target.Normal;
+        clone.transform.rotation = target.Rotation;
         Destroy(gameObject);
     }
 }
