@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5422105906004665418}
   - component: {fileID: 5422105906004665463}
   - component: {fileID: 5422105906004665462}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PickableCube
   m_TagString: Pickable
   m_Icon: {fileID: 0}
@@ -129,4 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customGravity: {x: 0, y: -9.81, z: 0}
   gravityMultiplier: 2
+  normalDrag: 2
+  normalRotDrag: 0.05
+  pickedDrag: 10
+  pickedRotDrag: 0.1
   isGrabbed: 0

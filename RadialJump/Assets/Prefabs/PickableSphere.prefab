@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4345242819257315854}
   - component: {fileID: 4345242819257315855}
   - component: {fileID: 4345242819257315852}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PickableSphere
   m_TagString: Pickable
   m_Icon: {fileID: 0}
@@ -129,4 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customGravity: {x: 0, y: -9.81, z: 0}
   gravityMultiplier: 2
+  normalDrag: 2
+  normalRotDrag: 0.05
+  pickedDrag: 10
+  pickedRotDrag: 0.1
   isGrabbed: 0

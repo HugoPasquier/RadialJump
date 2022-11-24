@@ -10,12 +10,37 @@ public class PickableObject : MonoBehaviour
     protected Vector3 customGravity;
     [SerializeField]
     float gravityMultiplier;
+    [SerializeField]
+    float normalDrag;
+    [SerializeField]
+    float normalRotDrag;
+    [SerializeField]
+    float pickedDrag;
+    [SerializeField]
+    float pickedRotDrag;
+
 
     Rigidbody rb;
 
     [Header("Grabbed ?")]
     public bool isGrabbed;
 
+
+    public void Picked() {
+        isGrabbed = true;
+        rb.drag = pickedDrag;
+        rb.angularDrag = pickedRotDrag;
+    }
+
+    public void Unpicked() {
+        isGrabbed = false;
+        rb.drag = normalDrag;
+        rb.angularDrag = normalRotDrag;
+    }
+
+    public void Move(Vector3 delta) {
+        rb.AddForce(delta, ForceMode.VelocityChange);
+    }
 
 
     private void Awake()
