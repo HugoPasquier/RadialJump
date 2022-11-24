@@ -20,10 +20,9 @@ public class Bumper : TileEffect
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Pickable"))
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * bumpForce, ForceMode.Impulse);
-            //collision.gameObject.AddComponent<Bumper>();
         }
     }
 }

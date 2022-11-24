@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
+    [SerializeField]
+    Transform orientation;
     public float moveSpeed;
     public float groundDrag;
     public float jumpForce;
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityMultiplier;
     public float airMultiplier;
     bool readyToJump = true;
+    public float rotationGrav;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -22,17 +25,18 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     bool grounded;
 
-    [SerializeField]
-    Transform orientation;
+    [Header("Current Level Settings")]
+    public SphereManager sphereManager;
+
+    
 
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
-
     Vector3 customGravity;
 
-    public float rotationGrav;
+    
 
     private void Awake()
     {
@@ -51,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Basic Ground Check (pas optimal mais fonctionnel pour un debut, voir a remplacer le raycast par un spherecast)
+        Debug.DrawLine(transform.position, transform.position - (transform.up * (playerHeight * 0.5f + 0.2f)), Color.red, 1);
+
         grounded = Physics.Raycast(transform.position, -transform.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         CheckInputs();
@@ -123,6 +129,9 @@ public class PlayerMovement : MonoBehaviour
 
         customGravity = newGravity;
         StartCoroutine(ChangeGravityOrientation());
+
+        if (sphereManager != null)
+            sphereManager.UpdateGravity(newGravity);
     }
 
     IEnumerator ChangeGravityOrientation()
