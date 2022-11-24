@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platformScalable: {fileID: -2733196744454865654, guid: 982c1307dc4bd0840910c4ba083d8944,
     type: 3}
-  _spawnOffset: 0.2
-  Rigidbody: {fileID: 6676086521593475797}
+  _speed: 7.5
+  _targetSpawnRadius: 0.2
 --- !u!65 &4270775138940267386
 BoxCollider:
   m_ObjectHideFlags: 0

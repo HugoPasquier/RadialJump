@@ -3256,7 +3256,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27378
+  m_Name: pb_Mesh32496
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4740,7 +4740,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27524
+  m_Name: pb_Mesh32648
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7846,7 +7846,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27494
+  m_Name: pb_Mesh32620
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9701,9 +9701,19 @@ PrefabInstance:
       objectReference: {fileID: 1396957088}
     - target: {fileID: 8171165481035465882, guid: ba62ccfba639ae047bb389f5089f1b7e,
         type: 3}
+      propertyPath: portee
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171165481035465882, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
       propertyPath: _ammosContainer
       value: 
       objectReference: {fileID: 922648897}
+    - target: {fileID: 8171165481035465882, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
+      propertyPath: canBeShot.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba62ccfba639ae047bb389f5089f1b7e, type: 3}
 --- !u!4 &2097961910620984329 stripped

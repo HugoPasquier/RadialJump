@@ -1,37 +1,47 @@
 using UnityEngine;
 
+public struct Target
+{
+    public Vector3 Position;
+    public Quaternion Rotation;
+    public Vector3 Normal;
+
+    public Target(Vector3 position, Quaternion rotation, Vector3 normal)
+    {
+        Position = position;
+        Rotation = rotation;
+        Normal = normal;
+    }
+}
+
 /// <summary>
 /// Drop an platform when it's near his target
 /// </summary>
 public class PlatformAmmo : MonoBehaviour
 {
     [SerializeField] private PlatformScalable _platformScalable;
+    [SerializeField] private float _speed = 7.5f;
     [SerializeField] private float _targetSpawnRadius = 0.2f;
-    
-    public Rigidbody Rigidbody;
 
-    private RaycastHit _targetHit;
+    private Target _target;
     private Transform _thisTransform;
     
     private void Awake()
     {
         _thisTransform = transform;
+    }
 
-        Ray ray = new Ray(_thisTransform.position, _thisTransform.forward);
-        if (!Physics.Raycast(ray, out _targetHit))
-        {
-            Debug.LogWarning("Can't create a platform in space.");
-            Destroy(gameObject);
-        }
+    public void Inject(in Target target)
+    {
+        _target = target;
     }
 
     private void Update()
     {
-        // Use distance to spawn a platform and not a collision event, because the ammos can't move too fast to detect a collision
-        // It pass through the other object
-        if (Vector3.Distance(_thisTransform.position, _targetHit.point) < _targetSpawnRadius)
+        transform.position = Vector3.Lerp(transform.position, _target.Position, Time.deltaTime * _speed);
+        if (Vector3.Distance(_thisTransform.position, _target.Position) < _targetSpawnRadius)
         {
-            CreatePlatform(_targetHit.point, _targetHit.normal);
+            CreatePlatform(_target.Position, _target.Normal);
         }
     }
 
