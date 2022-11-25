@@ -1,6 +1,9 @@
 using System;
+using System.Numerics;
 using Unity.Mathematics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlatformGun : Weapon
 {
@@ -8,10 +11,11 @@ public class PlatformGun : Weapon
     [SerializeField] private PlatformAmmo _ammo;
     [SerializeField] private Transform _ammosContainer;
     [SerializeField] private float _rotationAmount = 15f;
+    [SerializeField] private Transform Orientation;
     
     private Camera _camera;
 
-    private Quaternion _platformRotation = quaternion.identity;
+    private Quaternion _crosshairRotation = quaternion.identity;
     
     private void Awake() => _camera = Camera.main;
 
@@ -47,15 +51,27 @@ public class PlatformGun : Weapon
         if (Physics.Raycast(ray, out RaycastHit hit, portee, canBeShot))
         {
             var clone = Instantiate(_ammo, _barrel.position, _barrel.rotation, _ammosContainer);
-            clone.Inject(new Target(hit.point, _platformRotation, hit.normal));
+            
+            var platformRotation = Quaternion.Inverse(_crosshairRotation);
+            
+            // Take the player rotation to orient an object on floor or ceil surface,
+            // because he can rotate around an object and have a different perspective
+            var dotProduct = Vector3.Dot(hit.normal, Orientation.transform.up);
+            bool bHitGround = Math.Abs(dotProduct - 1f) < float.Epsilon;
+            bool bHitCeil = Math.Abs(dotProduct + 1f) < float.Epsilon;
+            if (bHitGround || bHitCeil)
+            {
+                platformRotation *= Quaternion.Euler(0f, 0f, Orientation.eulerAngles.y);
+            }
+
+            clone.Inject(new Target(hit.point, platformRotation, hit.normal));
         }
     }
 
     private void ChangeRotation(float value)
     {
-        _platformRotation *= Quaternion.Euler(0f, 0f, value * _rotationAmount);
-
+        _crosshairRotation *= Quaternion.Euler(0f, 0f, value * _rotationAmount);
         var crossHairTransform = hand.equipmentCrossHair.transform;
-        crossHairTransform.rotation = _platformRotation;
+        crossHairTransform.rotation = _crosshairRotation;
     }
 }

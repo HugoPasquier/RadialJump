@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public struct Target
@@ -50,7 +51,7 @@ public class PlatformAmmo : MonoBehaviour
         var clone = Instantiate(_platformScalable, target.Position, _platformScalable.transform.rotation);
         // Change forward direction of plateform scalable based on surface hit normal
         clone.transform.forward = target.Normal;
-        clone.transform.rotation = target.Rotation;
+        clone.transform.rotation *= target.Rotation;
         Destroy(gameObject);
     }
 }
