@@ -72,6 +72,7 @@ public class PlatformGun : Weapon
         
         if (Physics.Raycast(platformRay, out RaycastHit platformHit, portee, canBeShot) && Physics.Raycast(orientationRay, out var orientationHit, portee, canBeShot))
         {
+            audioSource.PlayOneShot(shootSound);
             var clone = Instantiate(_ammo, _barrel.position, _barrel.rotation, _ammosContainer);
             
             // Create player marker in world space

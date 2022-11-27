@@ -81,28 +81,30 @@ MonoBehaviour:
   canBeUse: 1
   hand: {fileID: 0}
   twoHanded: 0
-  colorItemMenu: {r: 0.17421682, g: 0.8207547, b: 0.8131033, a: 1}
+  colorItemMenu: {r: 1, g: 0.81702286, b: 0.49, a: 1}
   crossHair: {fileID: 6789998281885285968, guid: 69752c51219a40642b3d100a20a88164,
     type: 3}
   label: Platform Gun
   cadenceCD: 0.2
   portee: 500
   audioSource: {fileID: 1990443277}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 76382ed4f71617d4eb5c068481d95f1e, type: 3}
   canBeShot:
     serializedVersion: 2
     m_Bits: 72
-  recoilX: 0
-  recoilY: 0
-  recoilZ: 0
-  knockbackSnappiness: 0
-  knockbackSpeed: 0
-  knockbackAmount: 0
+  recoilX: -2
+  recoilY: 1
+  recoilZ: 0.5
+  knockbackSnappiness: 1
+  knockbackSpeed: 10
+  knockbackAmount: 0.4
   _barrel: {fileID: 7241558626415355668}
   _ammo: {fileID: 5830332190303150446, guid: 78a2865680a61b24a8ac1d7ff484d026, type: 3}
   _ammosContainer: {fileID: 0}
-  _rotationAmount: 15
-  radius: 0.01
+  _rotationAmount: 30
+  _orientationRadius: 0.01
+  DebugRadius: 0.2
+  ShowRadius: {fileID: 0}
 --- !u!82 &1990443277
 AudioSource:
   m_ObjectHideFlags: 0
@@ -114,8 +116,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
