@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 using Vector3 = UnityEngine.Vector3;
@@ -10,6 +9,8 @@ public class PlatformScalable : MonoBehaviour
 {
     [SerializeField] private float _maxScale = 1f;
     [SerializeField] private float _scaleSpeed = 0.1f;
+    
+    public Transform SnappingPoint;
 
     private Transform _thisTransform;
 

@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using Unity.Mathematics;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
@@ -11,12 +9,13 @@ public class PlatformGun : Weapon
     [SerializeField] private PlatformAmmo _ammo;
     [SerializeField] private Transform _ammosContainer;
     [SerializeField] private float _rotationAmount = 15f;
-    [SerializeField] private Transform Orientation;
     
     private Camera _camera;
-
+    
     private Quaternion _crosshairRotation = quaternion.identity;
     
+    private Vector3 CENTER_SCREEN = new Vector3(0.5f, 0.5f, 0f);
+
     private void Awake() => _camera = Camera.main;
 
     protected override void Start()
@@ -46,25 +45,27 @@ public class PlatformGun : Weapon
         recoilSystem.RecoilFire(this);
         hand.KnockbackFire();
         currentCadence -= cadenceCD;
-
-        Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(ray, out RaycastHit hit, portee, canBeShot))
+        
+        // We encounter a platform with platform orientation. In fact, Player can move around an object or change gravity,
+        // so his axis are different to other objects. In short, we need to take in account the player orientation
+        // with our platform creation.
+        // In response, we use two points to create a direction and rotate a platform. Our first point
+        // is the platform position and the second gives the player orientation.
+        // We snap the platform direction with the second point, then we apply our desired rotation.
+        var platformRay = _camera.ViewportPointToRay(CENTER_SCREEN);
+        var markerRay = _camera.ViewportPointToRay(CENTER_SCREEN - new Vector3(0.02f, 0f));
+        if (Physics.Raycast(platformRay, out RaycastHit platformHit, portee, canBeShot) && Physics.Raycast(markerRay, out var landmarkHit))
         {
             var clone = Instantiate(_ammo, _barrel.position, _barrel.rotation, _ammosContainer);
             
+            // Inverse rotation with the player pespective
             var platformRotation = Quaternion.Inverse(_crosshairRotation);
-            
-            // Take the player rotation to orient an object on floor or ceil surface,
-            // because he can rotate around an object and have a different perspective
-            var dotProduct = Vector3.Dot(hit.normal, Orientation.transform.up);
-            bool bHitGround = Math.Abs(dotProduct - 1f) < float.Epsilon;
-            bool bHitCeil = Math.Abs(dotProduct + 1f) < float.Epsilon;
-            if (bHitGround || bHitCeil)
-            {
-                platformRotation *= Quaternion.Euler(0f, 0f, Orientation.eulerAngles.y);
-            }
 
-            clone.Inject(new Target(hit.point, platformRotation, hit.normal));
+            // Create player marker in world space
+            var playerSnappingDirection = landmarkHit.point - platformHit.point;
+            playerSnappingDirection.Normalize();
+
+            clone.Inject(new Target(platformHit.point, platformRotation, platformHit.normal, playerSnappingDirection));
         }
     }
 
