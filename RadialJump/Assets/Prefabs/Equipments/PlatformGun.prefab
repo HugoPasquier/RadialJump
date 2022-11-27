@@ -82,16 +82,16 @@ MonoBehaviour:
   hand: {fileID: 0}
   twoHanded: 0
   colorItemMenu: {r: 0.17421682, g: 0.8207547, b: 0.8131033, a: 1}
-  crossHair: {fileID: 6789998281885285968, guid: fa899593d22f80c4f865384265d4f040,
+  crossHair: {fileID: 6789998281885285968, guid: 69752c51219a40642b3d100a20a88164,
     type: 3}
   label: Platform Gun
   cadenceCD: 0.2
-  portee: 0
+  portee: 500
   audioSource: {fileID: 1990443277}
   shootSound: {fileID: 0}
   canBeShot:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 72
   recoilX: 0
   recoilY: 0
   recoilZ: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   _barrel: {fileID: 7241558626415355668}
   _ammo: {fileID: 5830332190303150446, guid: 78a2865680a61b24a8ac1d7ff484d026, type: 3}
   _ammosContainer: {fileID: 0}
-  propulsionForce: 25
+  _rotationAmount: 15
+  radius: 0.01
 --- !u!82 &1990443277
 AudioSource:
   m_ObjectHideFlags: 0

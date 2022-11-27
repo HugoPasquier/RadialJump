@@ -342,7 +342,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 75
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -413,8 +413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d411067e6aef04cba790ee21c65bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 200
-  sensY: 200
+  sensX: 400
+  sensY: 400
   orientation: {fileID: 433257881246509405}
   recoil: {x: 0, y: 0, z: 0}
   inMenu: 0
@@ -1104,21 +1104,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 433257881732699501}
     m_Modifications:
     - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
-      propertyPath: portee
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
-      propertyPath: crossHair
-      value: 
-      objectReference: {fileID: 6789998281885285968, guid: 69752c51219a40642b3d100a20a88164,
-        type: 3}
-    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
-      propertyPath: _ammosContainer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1990443278, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}
-      propertyPath: canBeShot.m_Bits
-      value: 2147483647
+      propertyPath: _rotationAmount
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8603830258680296810, guid: f5622f1b13d7cdc4683de0adb49450ac,
         type: 3}
@@ -1179,11 +1166,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlatformGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8603830258680296813, guid: f5622f1b13d7cdc4683de0adb49450ac,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5622f1b13d7cdc4683de0adb49450ac, type: 3}

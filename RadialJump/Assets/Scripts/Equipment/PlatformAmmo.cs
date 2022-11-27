@@ -3,14 +3,12 @@ using UnityEngine;
 public struct Target
 {
     public Vector3 Position;
-    public Quaternion Rotation;
     public Vector3 ForwardNormal;
     public Vector3 SnappingDirection;
 
-    public Target(Vector3 position, Quaternion rotation, Vector3 forwardNormal, Vector3 snappingDirection)
+    public Target(Vector3 position, Vector3 forwardNormal, Vector3 snappingDirection)
     {
         Position = position;
-        Rotation = rotation;
         ForwardNormal = forwardNormal;
         SnappingDirection = snappingDirection;
     }
@@ -57,9 +55,12 @@ public class PlatformAmmo : MonoBehaviour
         // Snap platform direction with player perspective
         var platformDirection = clone.SnappingPoint.position - target.Position;
         float snappingAngle = -Vector3.SignedAngle(target.SnappingDirection, platformDirection.normalized, target.ForwardNormal);
+
+        // Draw Previous orientation
+        Debug.DrawLine(target.Position, target.Position + platformDirection, Color.red, 60f);
         
         // Apply player orientation and target rotation
-        clone.transform.rotation *= Quaternion.Euler(0f, 0f, snappingAngle) * target.Rotation;
+        clone.transform.rotation *= Quaternion.Euler(0f, 0f, snappingAngle);
         
         Destroy(gameObject);
     }
