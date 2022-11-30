@@ -11,6 +11,10 @@ public class Aspirateur : Weapon
     public float forceAmount = 1;
     public float epsilon = 0;
     public float forceDiminution = 0.5f;
+    bool isClose = false;
+    public float closeDistance = 1;
+    public float grabForceAmount = 2;
+    public float repulseForceAmount = 0.3f;
 
 
     // Update is called once per frame
@@ -19,31 +23,46 @@ public class Aspirateur : Weapon
         prevPos = currentPos;
         currentPos = GrabPosition();
 
+        // Check if cooldown is up
         if (currentCadence < cadenceCD)
             currentCadence += Time.deltaTime;
 
+        // Drag the object to the player
         if (canBeUse && Input.GetMouseButtonDown(twoHanded ? 0 : hand.cote == 1 ? 1 : 0) && currentCadence > cadenceCD)
         {
             Tir();
         }
 
-        if (grabObj && canBeUse && Input.GetMouseButtonUp(twoHanded ? 0 : hand.cote == 1 ? 1 : 0)) {
+        // Release the object
+        if (grabObj && canBeUse && Input.GetMouseButtonUp(0)) {
             Lacher();
         }
 
-        if(grabObj != null) {
+        // Repulse the object
+        if (grabObj && canBeUse && Input.GetMouseButton(1)) {
+            Repulse();
+        }
+
+        // Maintain the object in front of the player (if grabbed)
+        if (grabObj != null) {
             Vector3 delta = currentPos - grabObj.transform.position;
-            if(delta.magnitude < epsilon) {
-                grabObj.Move(delta * forceAmount * forceDiminution);
+            if (!isClose) {
+                grabObj.Move(delta * grabForceAmount);
+                if (delta.magnitude < closeDistance)
+                    isClose = true;
             } else {
-                grabObj.Move(delta * forceAmount);
+                if (delta.magnitude < epsilon) {
+                    grabObj.Move(delta * forceAmount * forceDiminution);
+                } else {
+                    grabObj.Move(delta * forceAmount);
+                }
             }
+            
         }
     }
 
+    // Determine the position in front of the player where the grabbed object will be
     Vector3 GrabPosition(){
-        //Debug.DrawLine(transform.position, transform.position + (transform.forward) * 10, Color.blue, 30);
-        
         return transform.position + (transform.forward) * ObjDistance + transform.right * offset * (hand.cote == 1 ? -1 : 1);
     }
 
@@ -52,17 +71,13 @@ public class Aspirateur : Weapon
         recoilSystem.RecoilFire(this);
         hand.KnockbackFire();
         currentCadence = 0;
-        Debug.Log("Shooting");
+
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit, portee, canBeShot))
         {
-            Debug.Log("Touching smth");
-            Debug.DrawLine(transform.position, hit.point, Color.red, 60);
             if (hit.collider.CompareTag("Pickable"))
             {
-                Debug.Log("Aspirated to : " + GrabPosition());
-                //hit.collider.gameObject.transform.position = GrabPosition();
                 grabObj = hit.collider.gameObject.GetComponent<PickableObject>();
                 grabObj.Picked();
             }
@@ -72,5 +87,14 @@ public class Aspirateur : Weapon
     void Lacher() {
         grabObj.Unpicked();
         grabObj = null;
+        isClose = false;
     }
+
+    void Repulse() {
+        Vector3 delta = Camera.main.transform.forward;
+        delta.Normalize();
+        grabObj.Repulse(delta * repulseForceAmount);
+        Lacher();
+    }
+        
 }

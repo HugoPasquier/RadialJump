@@ -30,16 +30,22 @@ public class PickableObject : MonoBehaviour
         isGrabbed = true;
         rb.drag = pickedDrag;
         rb.angularDrag = pickedRotDrag;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public void Unpicked() {
         isGrabbed = false;
         rb.drag = normalDrag;
         rb.angularDrag = normalRotDrag;
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     public void Move(Vector3 delta) {
         rb.AddForce(delta, ForceMode.VelocityChange);
+    }
+    
+    public void Repulse(Vector3 delta){
+        rb.AddForce(delta, ForceMode.Impulse);
     }
 
 
