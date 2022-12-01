@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3239289320462872970}
-  canBeUse: 0
+  canBeUse: 1
   hand: {fileID: 0}
   twoHanded: 1
   colorItemMenu: {r: 1, g: 0.9326923, b: 0.5625, a: 1}
@@ -55,12 +55,12 @@ MonoBehaviour:
     type: 3}
   label: Aspi
   cadenceCD: 0.2
-  portee: 0
+  portee: 500
   audioSource: {fileID: 4781135678584193655}
   shootSound: {fileID: 0}
   canBeShot:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   recoilX: -1.5
   recoilY: 1
   recoilZ: 0.2
