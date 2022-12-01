@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1440864481841449363}
   - component: {fileID: 1440864481841449362}
   - component: {fileID: 1440864481841449365}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 1440864482249699721}
   - component: {fileID: 1440864482249699719}
   - component: {fileID: 1440864482249699718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 1440864482509152156}
   - component: {fileID: 7760889407920907295}
   - component: {fileID: 1918280691841047524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Picker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440864482547694925}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 1440864482911070311}
   - component: {fileID: 1440864482911070309}
   - component: {fileID: 1440864482911070308}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LabelPicked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 6466628374454550181}
   - component: {fileID: 2043233260576658618}
   - component: {fileID: 1790648544572971765}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,6 +663,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: blasterF
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc25d18a26a3afb43bbf38e476849301,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc25d18a26a3afb43bbf38e476849301, type: 3}
 --- !u!4 &1473877614791015400 stripped
@@ -742,6 +747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: clipA
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 103061b1b45ca574583f3ac5aecfa28b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103061b1b45ca574583f3ac5aecfa28b, type: 3}
