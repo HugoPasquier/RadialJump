@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +45,7 @@ public abstract class Weapon : Equipment
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         recoilSystem = GameObject.Find("Player/CameraHolder").GetComponent<RecoilCamera>();
     }
