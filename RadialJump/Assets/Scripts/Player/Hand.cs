@@ -154,7 +154,8 @@ public class Hand : MonoBehaviour
                         currentEquipment = null;
                
                     }
-                    selectEquipment(menuEquip.menuItemSc.equip.gameObject);
+                    if(menuEquip.menuItemSc.equip.gameObject != null)
+                        selectEquipment(menuEquip.menuItemSc.equip.gameObject);
                 }
             }
 

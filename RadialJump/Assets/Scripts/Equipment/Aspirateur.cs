@@ -43,6 +43,11 @@ public class Aspirateur : Weapon
             Repulse();
         }
 
+        
+    }
+
+    private void FixedUpdate() {
+
         // Maintain the object in front of the player (if grabbed)
         if (grabObj != null) {
             Vector3 delta = currentPos - grabObj.transform.position;
@@ -57,7 +62,7 @@ public class Aspirateur : Weapon
                     grabObj.Move(delta * forceAmount);
                 }
             }
-            
+
         }
     }
 
