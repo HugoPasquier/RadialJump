@@ -7,7 +7,7 @@ TagManager:
   - CPGravity
   - Bumper
   - WhiteTile
-  - Aspirated
+  - Pickable
   layers:
   - Default
   - TransparentFX
@@ -17,8 +17,8 @@ TagManager:
   - UI
   - Shootable
   - WhiteTile
-  - 
-  - 
+  - Player
+  - PlatformAmmo
   - 
   - 
   - 
