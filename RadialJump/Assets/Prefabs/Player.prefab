@@ -100,9 +100,9 @@ MonoBehaviour:
   orientation: {fileID: 433257881246509405}
   moveSpeed: 10
   groundDrag: 7
-  jumpForce: 18
+  jumpForce: 25
   jumCooldown: 0.25
-  gravityMultiplier: 4
+  gravityMultiplier: 7
   airMultiplier: 0.4
   rotationGrav: 0.5
   jumpKey: 32
@@ -110,7 +110,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  groundRadius: 0.05
+  groundRadius: 0.1
   sphereManager: {fileID: 0}
 --- !u!1 &433257880618430267
 GameObject:
