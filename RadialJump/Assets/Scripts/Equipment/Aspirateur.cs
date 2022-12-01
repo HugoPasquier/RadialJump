@@ -15,6 +15,7 @@ public class Aspirateur : Weapon
     public float closeDistance = 1;
     public float grabForceAmount = 2;
     public float repulseForceAmount = 0.3f;
+    public AudioClip repulseSound;
 
 
     // Update is called once per frame
@@ -75,6 +76,7 @@ public class Aspirateur : Weapon
     {
         recoilSystem.RecoilFire(this);
         hand.KnockbackFire();
+        audioSource.PlayOneShot(shootSound);
         currentCadence = 0;
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -99,6 +101,7 @@ public class Aspirateur : Weapon
         Vector3 delta = Camera.main.transform.forward;
         delta.Normalize();
         grabObj.Repulse(delta * repulseForceAmount);
+        audioSource.PlayOneShot(repulseSound);
         Lacher();
     }
         

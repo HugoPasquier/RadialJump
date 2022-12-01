@@ -5642,11 +5642,31 @@ PrefabInstance:
       propertyPath: menuEquip
       value: 
       objectReference: {fileID: 1396957088}
+    - target: {fileID: 7236177972424494416, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.235
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236177972424494416, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 38c4861bbbbd6804b911706c8f2e6d92, type: 3}
+    - target: {fileID: 7310807548217921102, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 38c4861bbbbd6804b911706c8f2e6d92, type: 3}
     - target: {fileID: 7310807548217921102, guid: ba62ccfba639ae047bb389f5089f1b7e,
         type: 3}
       propertyPath: forceAmount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7310807548217921102, guid: ba62ccfba639ae047bb389f5089f1b7e,
+        type: 3}
+      propertyPath: repulseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
     - target: {fileID: 7310807548217921102, guid: ba62ccfba639ae047bb389f5089f1b7e,
         type: 3}
       propertyPath: closeDistance
