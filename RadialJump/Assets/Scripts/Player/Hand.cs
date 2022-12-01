@@ -139,27 +139,16 @@ public class Hand : MonoBehaviour
             }
             else
             {
-                menuEquip.gameObject.SetActive(false);
-                if (menuEquip.selection != -1)
-                {
-                    if (currentEquipment != null)
-                    {
-                        currentEquipment.canBeUse = false;
-                        currentEquipment.notUsableEquipment();
-                        Destroy(equipmentCrossHair);
-                        currentEquipment.rangerEquipment();
-                        currentEquipment.gameObject.SetActive(false);
-                        currentEquipment.transform.parent = inventory;
-                        currentEquipment.hand = null;
-                        currentEquipment = null;
-               
-                    }
-                    selectEquipment(menuEquip.menuItemSc.equip.gameObject);
-                }
+                CloseMenu();
             }
 
             dureeInput = 0;
 
+        }
+
+        if(!Input.GetKey(key) && menuEquip.gameObject.activeSelf && menuEquip.hand == cote)
+        {
+            CloseMenu();
         }
 
         float movementX = -Input.GetAxis("Mouse X") * amount;
@@ -201,6 +190,50 @@ public class Hand : MonoBehaviour
     {
         Weapon currentWeapon = currentEquipment as Weapon;
         targetZ -= currentWeapon.knockbackAmount;
+    }
+
+    public void CloseMenu()
+    {
+        dureeInput = 0;
+        if (!menuEquip.canBeDisplayed)
+            return;
+
+        menuEquip.gameObject.SetActive(false);
+        
+        
+
+        if (menuEquip.selection != -1)
+        {
+            if (currentEquipment != null)
+            {
+                leaveEquipment();
+            }
+
+            if (menuEquip.menuItemSc != null)
+                selectEquipment(menuEquip.menuItemSc.equip.gameObject);
+        }
+    }
+
+    public void newEquipment(GameObject newEquip)
+    {
+        leaveEquipment();
+        selectEquipment(newEquip);
+    }
+
+    public void leaveEquipment()
+    {
+        if (currentEquipment != null)
+        {
+            currentEquipment.canBeUse = false;
+            currentEquipment.notUsableEquipment();
+            Destroy(equipmentCrossHair);
+            currentEquipment.rangerEquipment();
+            currentEquipment.gameObject.SetActive(false);
+            currentEquipment.transform.parent = inventory;
+            currentEquipment.hand = null;
+            currentEquipment = null;
+
+        }
     }
 
     IEnumerator rangerEquipment()
