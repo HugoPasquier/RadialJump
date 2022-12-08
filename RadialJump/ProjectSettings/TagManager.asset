@@ -8,6 +8,8 @@ TagManager:
   - Bumper
   - WhiteTile
   - Pickable
+  - Aspirated
+  - ball
   layers:
   - Default
   - TransparentFX

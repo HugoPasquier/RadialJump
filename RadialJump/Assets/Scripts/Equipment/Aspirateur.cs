@@ -83,7 +83,7 @@ public class Aspirateur : Weapon
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit, portee, canBeShot))
         {
-            if (hit.collider.CompareTag("Pickable"))
+            if (hit.collider.CompareTag("Pickable") || hit.collider.CompareTag("ball"))
             {
                 grabObj = hit.collider.gameObject.GetComponent<PickableObject>();
                 grabObj.Picked();
