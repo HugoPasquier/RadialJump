@@ -7,16 +7,21 @@ public class BasketHoop : MonoBehaviour {
     [SerializeField]
     ParticleSystem ps;
     private Vector3 old_pos;
-    
-    private void OnTriggerEnter(Collider other) {
-        old_pos = other.transform.position;
 
-    }
+    [SerializeField]
+    BasketHoopCollider upCollider;
 
-    private void OnTriggerExit(Collider other) {
+    [SerializeField]
+    BasketHoopCollider downCollider;
 
-        if (other.transform.position.y < old_pos.y && other.gameObject.tag == "ball") {
+    BasketHoopCollider current = null;
+
+
+    public void processBall(BasketHoopCollider col) {
+        if(current == upCollider && col == downCollider)
             ps.Play();
-        }
+
+        current = col;
     }
+    
 }
