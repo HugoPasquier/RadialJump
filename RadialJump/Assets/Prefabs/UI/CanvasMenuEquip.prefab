@@ -170,7 +170,7 @@ MonoBehaviour:
   normalisedMousePosition: {x: 0, y: 0}
   currentAngle: 0
   selection: 0
-  minDist: 235
+  minDist: 115
   inCircle: 0
   menuItemSc: {fileID: 0}
   previousMenuItem: {fileID: 0}
