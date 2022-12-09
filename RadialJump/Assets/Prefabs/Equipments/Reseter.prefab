@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1396187883}
   - component: {fileID: 1396187885}
   - component: {fileID: 1396187884}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1606443923}
   - component: {fileID: 1606443925}
   - component: {fileID: 1606443924}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: LoadingImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334838192483872865}
   - component: {fileID: 334838192483872864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Reseter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 5253556659090679846}
   - component: {fileID: 3714893690951636826}
   - component: {fileID: 2373120103582397898}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: CanvasEcran
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 1779302721258655516}
   - component: {fileID: 4806042500150833426}
   - component: {fileID: 3322449917928646312}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,6 +529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: clipA
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 103061b1b45ca574583f3ac5aecfa28b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103061b1b45ca574583f3ac5aecfa28b, type: 3}

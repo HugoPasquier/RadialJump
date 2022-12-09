@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6828974172614042459}
   - component: {fileID: 2014669561796058113}
   - component: {fileID: 2833322582614961983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GravityChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,6 +241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: blasterB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5263dc40e03b69440ab4c9571bbd8c78,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5263dc40e03b69440ab4c9571bbd8c78, type: 3}
