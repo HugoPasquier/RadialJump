@@ -36,6 +36,8 @@ public class MenuEquip : MonoBehaviour
 
     public int hand;
 
+    public bool canBeDisplayed = false;
+
     private void Awake()
     {
         handLabel = GetComponent<TextMeshProUGUI>();
@@ -53,6 +55,7 @@ public class MenuEquip : MonoBehaviour
         updateMenuItems();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        canBeDisplayed = true;
     }
 
     private void OnDisable()
@@ -60,6 +63,7 @@ public class MenuEquip : MonoBehaviour
         playerCam.inMenu = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        canBeDisplayed = false;
     }
 
     public void setHand(int h)
