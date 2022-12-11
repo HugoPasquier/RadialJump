@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
 
     public bool isOpen;
 
-    Coroutine transition;
+    protected Coroutine transition;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         
     }
 
-    public void Open()
+    public virtual void Open()
     {
         if (transition != null)
             StopCoroutine(transition);
@@ -37,7 +37,7 @@ public class Door : MonoBehaviour
         transition = StartCoroutine(openDoors());
     }
 
-    public void Close()
+    public virtual void Close()
     {
         if (transition != null)
             StopCoroutine(transition);
@@ -45,7 +45,7 @@ public class Door : MonoBehaviour
         transition = StartCoroutine(closeDoors());
     }
 
-    IEnumerator openDoors()
+    protected IEnumerator openDoors()
     {
         while (leftSide.localPosition.x > -3.7f)
         {
@@ -60,7 +60,7 @@ public class Door : MonoBehaviour
         isOpen = true;
     }
 
-    IEnumerator closeDoors()
+    protected IEnumerator closeDoors()
     {
         isOpen = false;
 

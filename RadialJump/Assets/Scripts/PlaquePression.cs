@@ -101,7 +101,11 @@ public class PlaquePression : MonoBehaviour
         DynamicGI.UpdateEnvironment();
 
         isActive = true;
-        door.Open();
+        if (door is DoorMultiple)
+            (door as DoorMultiple).Open();
+        else
+            door.Open();
+
 
         transition = null;
     }
