@@ -16,10 +16,16 @@ public class BasketHoop : MonoBehaviour {
 
     BasketHoopCollider current = null;
 
+    [SerializeField]
+    Door door;
+
 
     public void processBall(BasketHoopCollider col) {
-        if(current == upCollider && col == downCollider)
+        if (current == upCollider && col == downCollider) {
             ps.Play();
+            door.Open();
+        }
+            
 
         current = col;
     }

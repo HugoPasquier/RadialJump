@@ -57,7 +57,7 @@ MonoBehaviour:
   cadenceCD: 0.2
   portee: 500
   audioSource: {fileID: 4781135678584193655}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 38c4861bbbbd6804b911706c8f2e6d92, type: 3}
   canBeShot:
     serializedVersion: 2
     m_Bits: 64
@@ -67,14 +67,15 @@ MonoBehaviour:
   knockbackSnappiness: 6
   knockbackSpeed: 6
   knockbackAmount: 0.2
-  ObjDistance: 1
-  offset: 0
-  forceAmount: 1
-  epsilon: 0
+  ObjDistance: 2.5
+  offset: 0.3
+  forceAmount: 3
+  epsilon: 0.2
   forceDiminution: 0.5
-  closeDistance: 1
-  grabForceAmount: 2
-  repulseForceAmount: 0.3
+  closeDistance: 0.5
+  grabForceAmount: 1
+  repulseForceAmount: 40
+  repulseSound: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
 --- !u!82 &4781135678584193655
 AudioSource:
   m_ObjectHideFlags: 0
@@ -85,9 +86,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 38c4861bbbbd6804b911706c8f2e6d92, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.235
   m_Pitch: 1
   Loop: 0
   Mute: 0
