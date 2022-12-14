@@ -53,7 +53,7 @@ public class PickableObject : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        _initialPosition = Vector3.zero;
+        _initialPosition = transform.position;
     }
 
     // Start is called before the first frame update
