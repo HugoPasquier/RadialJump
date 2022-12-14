@@ -80,7 +80,7 @@ MonoBehaviour:
   model: {fileID: 8603830260560753178}
   canBeUse: 1
   hand: {fileID: 0}
-  twoHanded: 0
+  twoHanded: 1
   colorItemMenu: {r: 1, g: 0.81702286, b: 0.49, a: 1}
   crossHair: {fileID: 6789998281885285968, guid: 69752c51219a40642b3d100a20a88164,
     type: 3}
