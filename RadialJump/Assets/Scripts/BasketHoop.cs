@@ -16,10 +16,37 @@ public class BasketHoop : MonoBehaviour {
 
     BasketHoopCollider current = null;
 
+    [SerializeField]
+    Door door;
+
+
+    [SerializeField]
+    bool MultipleHoopDoor = false;
+    [SerializeField]
+    List<BasketHoop> hoops;
+
+    public bool isActive = false;
 
     public void processBall(BasketHoopCollider col) {
-        if(current == upCollider && col == downCollider)
+        if (current == upCollider && col == downCollider) {
+            if (MultipleHoopDoor){
+                bool openDoor = true;
+                foreach (BasketHoop hoop in hoops){
+                    openDoor = openDoor && hoop.isActive;
+                }
+
+                if (openDoor){
+                    door.Open();
+                }
+            }
+            else {
+                door.Open();
+            }
+            isActive = true;
             ps.Play();
+
+        }
+            
 
         current = col;
     }
