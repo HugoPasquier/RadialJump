@@ -8,6 +8,8 @@ public class EndTrigger : MonoBehaviour
     [SerializeField]
     Animator transi;
 
+    public int nextScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,7 @@ public class EndTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Fin");
-            StartCoroutine(endLevel(1.5f));
+            StartCoroutine(endLevel(0.0f));
         }
     }
 
@@ -36,8 +38,8 @@ public class EndTrigger : MonoBehaviour
         transi.SetTrigger("Close");
     }
 
-    public void loadNextScene(int i)
+    public void loadNextScene()
     {
-        SceneManager.LoadScene(i);
+        SceneManager.LoadScene(nextScene);
     }
 }

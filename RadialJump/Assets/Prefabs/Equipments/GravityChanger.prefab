@@ -56,7 +56,7 @@ MonoBehaviour:
   label: 'Gravity
 
     Changer'
-  cadenceCD: 0.3
+  cadenceCD: 0.5
   portee: 500
   audioSource: {fileID: 2833322582614961983}
   shootSound: {fileID: 0}
