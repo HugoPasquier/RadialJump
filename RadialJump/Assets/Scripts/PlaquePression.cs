@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlaquePression : MonoBehaviour
 {
@@ -29,8 +30,10 @@ public class PlaquePression : MonoBehaviour
     List<Material> matCables = new List<Material>();
 
     public bool isActive;
-
+    
     Coroutine transition;
+
+    public UnityEvent<bool> OnChangeState;
 
     private void Awake()
     {
@@ -105,6 +108,7 @@ public class PlaquePression : MonoBehaviour
             (door as DoorMultiple).Open();
         else
             door.Open();
+        OnChangeState?.Invoke(isActive);
 
 
         transition = null;
@@ -119,6 +123,7 @@ public class PlaquePression : MonoBehaviour
         if (isActive)
         {
             isActive = false;
+            OnChangeState?.Invoke(isActive);
             door.Close();
             foreach (Material m in matCables)
             {

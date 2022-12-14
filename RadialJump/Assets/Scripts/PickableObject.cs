@@ -21,6 +21,7 @@ public class PickableObject : MonoBehaviour
 
 
     Rigidbody rb;
+    private Vector3 _initialPosition;
 
     [Header("Grabbed ?")]
     public bool isGrabbed;
@@ -52,6 +53,7 @@ public class PickableObject : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        _initialPosition = Vector3.zero;
     }
 
     // Start is called before the first frame update
@@ -75,4 +77,11 @@ public class PickableObject : MonoBehaviour
         rb.AddForce(customGravity * gravityMultiplier);
     }
 
+
+    public void Respawn()
+    {
+        transform.position = _initialPosition;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 }
