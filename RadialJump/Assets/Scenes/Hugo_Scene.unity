@@ -5489,8 +5489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d411067e6aef04cba790ee21c65bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 300
-  sensY: 300
+  sensX: 100
+  sensY: 100
   orientation: {fileID: 96393391}
   recoil: {x: 0, y: 0, z: 0}
   inMenu: 0

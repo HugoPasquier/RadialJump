@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelNico.unity
     guid: 21a897f55fccb4d4ebd9a3fc257b9689
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: ad39e0a3fd7e3dc45860017c24b32612
   m_configObjects: {}
