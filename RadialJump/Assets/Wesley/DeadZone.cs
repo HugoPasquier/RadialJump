@@ -1,26 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeadZone : MonoBehaviour
 {
     public Action OnDead;
     [SerializeField] private Transform _initialPosition;
     [SerializeField] private PickableObject _projectile;
+    [SerializeField] private Transform _checkpoint;
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.GetComponent<PickableObject>())
+        if (col.TryGetComponent<PickableObject>(out var pickable))
         {
             OnDead?.Invoke();
-            ResetProjectile();
+            pickable.Respawn();
         }
-    }
 
-    private void ResetProjectile()
-    {
-        _projectile.transform.position = _initialPosition.position;
-        var rb = _projectile.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        if (col.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
