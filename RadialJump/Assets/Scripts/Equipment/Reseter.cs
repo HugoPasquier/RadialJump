@@ -34,7 +34,7 @@ public class Reseter : Equipment
         if (loadingTime >= 1)
         {
             Debug.Log("RESET LEVEL");
-            SceneManager.LoadScene(0); // Temporaire, il faudra creer un etat initial a chaque salle et le charger
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Temporaire, il faudra creer un etat initial a chaque salle et le charger
         }
            
     }

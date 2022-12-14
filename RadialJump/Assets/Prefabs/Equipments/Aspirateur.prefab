@@ -60,7 +60,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 38c4861bbbbd6804b911706c8f2e6d92, type: 3}
   canBeShot:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   recoilX: -1.5
   recoilY: 1
   recoilZ: 0.2
