@@ -10,6 +10,9 @@ public class Door : MonoBehaviour
     [SerializeField]
     Transform rightSide;
 
+    [SerializeField] private float _maxPosition = 3.7f;
+    [SerializeField] private float _minPosition = 1.25f;
+
     [SerializeField]
     float speed;
 
@@ -50,15 +53,15 @@ public class Door : MonoBehaviour
 
     IEnumerator openDoors()
     {
-        while (leftSide.localPosition.x > -3.7f)
+        while (leftSide.localPosition.x > -_maxPosition)
         {
             leftSide.localPosition = leftSide.localPosition - Vector3.right * speed * Time.deltaTime;
             rightSide.localPosition = rightSide.localPosition + Vector3.right * speed * Time.deltaTime;
             yield return null;
         }
 
-        leftSide.localPosition = new Vector3(-3.7f, leftSide.localPosition.y, leftSide.localPosition.z);
-        rightSide.localPosition = new Vector3(3.7f, rightSide.localPosition.y, rightSide.localPosition.z);
+        leftSide.localPosition = new Vector3(-_maxPosition, leftSide.localPosition.y, leftSide.localPosition.z);
+        rightSide.localPosition = new Vector3(_maxPosition, rightSide.localPosition.y, rightSide.localPosition.z);
 
         isOpen = true;
     }
@@ -67,14 +70,14 @@ public class Door : MonoBehaviour
     {
         isOpen = false;
 
-        while (leftSide.localPosition.x < -1.25f)
+        while (leftSide.localPosition.x < -_minPosition)
         {
             leftSide.localPosition = leftSide.localPosition + Vector3.right * speed * Time.deltaTime;
             rightSide.localPosition = rightSide.localPosition - Vector3.right * speed * Time.deltaTime;
             yield return null;
         }
 
-        leftSide.localPosition = new Vector3(-1.25f, leftSide.localPosition.y, leftSide.localPosition.z);
-        rightSide.localPosition = new Vector3(1.25f, rightSide.localPosition.y, rightSide.localPosition.z);
+        leftSide.localPosition = new Vector3(-_minPosition, leftSide.localPosition.y, leftSide.localPosition.z);
+        rightSide.localPosition = new Vector3(_minPosition, rightSide.localPosition.y, rightSide.localPosition.z);
     }
 }
