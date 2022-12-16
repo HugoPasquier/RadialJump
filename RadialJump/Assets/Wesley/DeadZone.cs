@@ -1,13 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DeadZone : MonoBehaviour
 {
     public Action OnDead;
-    [SerializeField] private Transform _initialPosition;
-    [SerializeField] private PickableObject _projectile;
-    [SerializeField] private Transform _checkpoint;
+    [SerializeField] private Checkpoint _checkpoint;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -19,7 +16,8 @@ public class DeadZone : MonoBehaviour
 
         if (col.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            var player = FindObjectOfType<PlayerMovement>();
+            player.transform.position = _checkpoint.transform.position;
         }
     }
 }
