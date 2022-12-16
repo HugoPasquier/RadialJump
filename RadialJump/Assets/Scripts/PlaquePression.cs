@@ -104,10 +104,13 @@ public class PlaquePression : MonoBehaviour
         DynamicGI.UpdateEnvironment();
 
         isActive = true;
-        if (door is DoorMultiple)
-            (door as DoorMultiple).Open();
-        else
-            door.Open();
+        if (door)
+        {
+            if (door is DoorMultiple)
+                (door as DoorMultiple).Open();
+            else
+                door.Open();
+        }
         OnChangeState?.Invoke(isActive);
 
 
@@ -124,7 +127,10 @@ public class PlaquePression : MonoBehaviour
         {
             isActive = false;
             OnChangeState?.Invoke(isActive);
-            door.Close();
+            if (door)
+            {
+                door.Close();
+            }
             foreach (Material m in matCables)
             {
                 m.color = disabledColor;
@@ -136,7 +142,7 @@ public class PlaquePression : MonoBehaviour
 
         while (plaque.localPosition.y < 0.15f)
         {
-            plaque.localPosition = plaque.localPosition + Vector3.up * speedTransition * Time.deltaTime;
+            plaque.localPosition = plaque.localPosition + Vector3.up * (speedTransition * Time.deltaTime);
             yield return null;
         }
 
