@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ProtoScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Wesley.unity
-    guid: 88aa758efb27f744bb2e95af2b010b46
   - enabled: 1
     path: Assets/Scenes/Hugo_Scene.unity
     guid: 5f20a196640733c41b132d9f51da84bd
   - enabled: 1
     path: Assets/Scenes/LevelNico.unity
     guid: 21a897f55fccb4d4ebd9a3fc257b9689
+  - enabled: 1
+    path: Assets/Scenes/Level_Wesley.unity
+    guid: 88aa758efb27f744bb2e95af2b010b46
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: ad39e0a3fd7e3dc45860017c24b32612

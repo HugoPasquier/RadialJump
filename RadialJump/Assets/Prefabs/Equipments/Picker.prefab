@@ -236,7 +236,7 @@ MonoBehaviour:
   cadenceCD: 0.2
   portee: 500
   audioSource: {fileID: 1918280691841047524}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 5a5a7f693ef387145bf81821498c2275, type: 3}
   canBeShot:
     serializedVersion: 2
     m_Bits: 128
@@ -253,6 +253,7 @@ MonoBehaviour:
   pickedLabel: {fileID: 1440864482911070308}
   canvasEcran: {fileID: 1440864481841449367}
   pickedImage: {fileID: 1790648544572971765}
+  soundRight: {fileID: 8300000, guid: c510f88e0b23afb4bbb238cacdbda1ca, type: 3}
 --- !u!82 &1918280691841047524
 AudioSource:
   m_ObjectHideFlags: 0
@@ -264,8 +265,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

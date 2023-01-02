@@ -260,7 +260,7 @@ MonoBehaviour:
   model: {fileID: 604885731247985962}
   canBeUse: 1
   hand: {fileID: 0}
-  twoHanded: 0
+  twoHanded: 1
   colorItemMenu: {r: 0.40000004, g: 0.40000004, b: 0.627451, a: 1}
   crossHair: {fileID: 5823640256101518237, guid: f4e197c980a9bdd4f8ec1b0ce66d79da,
     type: 3}

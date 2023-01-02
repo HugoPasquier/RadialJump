@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -752,6 +752,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasMenuEquip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184508108183923965, guid: dc99ce89df8f98540bb6ffd7a12dff3b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5184508108183923966, guid: dc99ce89df8f98540bb6ffd7a12dff3b,
         type: 3}
@@ -2626,6 +2631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSide: {fileID: 713116259}
   rightSide: {fileID: 1350554874}
+  _maxPosition: 3.7
+  _minPosition: 1.25
   speed: 2
   isOpen: 0
 --- !u!64 &93936537
@@ -10566,6 +10573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSide: {fileID: 432327516}
   rightSide: {fileID: 1468704046}
+  _maxPosition: 3.7
+  _minPosition: 1.25
   speed: 2
   isOpen: 0
 --- !u!64 &715434236

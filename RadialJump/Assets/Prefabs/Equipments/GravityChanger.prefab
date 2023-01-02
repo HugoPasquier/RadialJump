@@ -49,7 +49,7 @@ MonoBehaviour:
   model: {fileID: 5909859631552858169}
   canBeUse: 1
   hand: {fileID: 0}
-  twoHanded: 0
+  twoHanded: 1
   colorItemMenu: {r: 0.91372555, g: 0.6039216, b: 0.7137255, a: 1}
   crossHair: {fileID: 6789998281885285968, guid: fa899593d22f80c4f865384265d4f040,
     type: 3}
@@ -59,7 +59,7 @@ MonoBehaviour:
   cadenceCD: 0.5
   portee: 500
   audioSource: {fileID: 2833322582614961983}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: fab2a8abfe3bd1949ad77059bd6772f0, type: 3}
   canBeShot:
     serializedVersion: 2
     m_Bits: 192
@@ -80,8 +80,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
