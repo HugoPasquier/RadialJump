@@ -1,9 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Aspirateur : Weapon
 {
+    [Header("VR")]
+    [SerializeField] XRNode xrNode = XRNode.RightHand;
+    public bool bOnVr = false;
+    
+    InputFeatureUsage<bool> triggerUsage = CommonUsages.triggerButton;
+    InputFeatureUsage<bool> gripUsage = CommonUsages.gripButton;
+    InputDevice device;
+    private bool previousGripButtonState;
+    
+    
     public float ObjDistance = 1;
     public float offset;
     PickableObject grabObj = null;
@@ -17,6 +27,7 @@ public class Aspirateur : Weapon
     public float repulseForceAmount = 0.3f;
     public AudioClip repulseSound;
 
+    private void OnEnable() => device = InputDevices.GetDeviceAtXRNode(xrNode);
 
     // Update is called once per frame
     void Update()
@@ -27,24 +38,41 @@ public class Aspirateur : Weapon
         // Check if cooldown is up
         if (currentCadence < cadenceCD)
             currentCadence += Time.deltaTime;
+        
+        bool triggerButtonPressed = false;
+        bool gripButtonPressed = false;
+        if (device is { isValid: true })
+        {
+            device.TryGetFeatureValue(triggerUsage, out triggerButtonPressed);
+            device.TryGetFeatureValue(gripUsage, out gripButtonPressed);
+        }
+        else
+        {
+            device = InputDevices.GetDeviceAtXRNode(xrNode);
+        }
 
+        bool gripButtonDown = !previousGripButtonState && gripButtonPressed;
+        bool gripButtonUp = previousGripButtonState && !gripButtonPressed;
         // Drag the object to the player
-        if (canBeUse && Input.GetMouseButtonDown(twoHanded ? 0 : hand.cote == 1 ? 1 : 0) && currentCadence > cadenceCD)
+        if (canBeUse && (Input.GetMouseButtonDown(twoHanded ? 0 : hand.cote == 1 ? 1 : 0) || gripButtonDown) && currentCadence > cadenceCD)
         {
             Tir();
+            Debug.Log("Tir");
         }
 
         // Release the object
-        if (grabObj && canBeUse && Input.GetMouseButtonUp(0)) {
+        if (grabObj && canBeUse && (Input.GetMouseButtonUp(0) || gripButtonUp)) {
             Lacher();
+            Debug.Log("Lacher");
         }
 
         // Repulse the object
-        if (grabObj && canBeUse && Input.GetMouseButton(1)) {
+        if (grabObj && canBeUse && (Input.GetMouseButton(1) || triggerButtonPressed)) {
             Repulse();
+            Debug.Log("Repulse");
         }
 
-        
+        previousGripButtonState = gripButtonPressed;
     }
 
     private void FixedUpdate() {
@@ -68,7 +96,8 @@ public class Aspirateur : Weapon
     }
 
     // Determine the position in front of the player where the grabbed object will be
-    Vector3 GrabPosition(){
+    Vector3 GrabPosition()
+    {
         return transform.position + (transform.forward) * ObjDistance + transform.right * offset * (hand.cote == 1 ? -1 : 1);
     }
 
@@ -80,6 +109,11 @@ public class Aspirateur : Weapon
         currentCadence = 0;
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if (bOnVr)
+        {
+            ray = new Ray(transform.position, transform.forward);
+        }
+        
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit, portee, canBeShot))
         {
@@ -99,6 +133,11 @@ public class Aspirateur : Weapon
 
     void Repulse() {
         Vector3 delta = Camera.main.transform.forward;
+        if (bOnVr)
+        {
+            delta = transform.forward;
+        }
+        
         delta.Normalize();
         grabObj.Repulse(delta * repulseForceAmount);
         audioSource.PlayOneShot(repulseSound);

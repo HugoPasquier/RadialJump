@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Hand : MonoBehaviour
 {
     [Header("Input")]
-    [SerializeField]
-    KeyCode key;
+    [SerializeField] KeyCode key;
 
     [SerializeField]
     float dureeInputMenu;
