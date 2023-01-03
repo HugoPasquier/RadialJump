@@ -31,7 +31,7 @@ public class EndTrigger : MonoBehaviour
         }
     }
 
-    IEnumerator endLevel(float time)
+    public IEnumerator endLevel(float time)
     {
         yield return new WaitForSeconds(time);
 

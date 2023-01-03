@@ -32214,7 +32214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transi: {fileID: 0}
-  nextScene: 1
+  nextScene: 2
 --- !u!95 &2033093144
 Animator:
   serializedVersion: 4
