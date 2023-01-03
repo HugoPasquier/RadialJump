@@ -22,7 +22,8 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -36,7 +37,6 @@ public class MainMenu : MonoBehaviour
         PP.activePlate();
         Canvas.SetActive(false);
         StartCoroutine(moveCamera());
-        StartCoroutine(ET.endLevel(3));
     }
 
     public void quitButton()
@@ -46,6 +46,8 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator moveCamera()
     {
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ET.endLevel(3));
         while (true)
         {
             camT.position += Vector3.right * camSpeed * Time.deltaTime;
