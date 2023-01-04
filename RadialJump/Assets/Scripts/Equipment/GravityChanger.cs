@@ -29,6 +29,8 @@ public class GravityChanger : Weapon
         recoilSystem.RecoilFire(this);
         hand.KnockbackFire();
         currentCadence = 0;
+        audioSource.clip = shootSound;
+        audioSource.Play();
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit = new RaycastHit();

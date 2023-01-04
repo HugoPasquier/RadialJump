@@ -148,4 +148,28 @@ public class PlaquePression : MonoBehaviour
 
         transition = null;
     }
+
+    public void activePlate()
+    {
+        foreach (Material m in matCables)
+        {
+            m.color = enabledColor;
+            m.EnableKeyword("_EMISSION");
+            m.SetColor("_EmissionColor", enabledColor);
+        }
+        DynamicGI.UpdateEnvironment();
+
+        isActive = true;
+        if (door)
+        {
+            if (door is DoorMultiple)
+                (door as DoorMultiple).Open();
+            else
+                door.Open();
+        }
+        OnChangeState?.Invoke(isActive);
+
+
+        transition = null;
+    }
 }

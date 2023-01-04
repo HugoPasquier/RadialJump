@@ -6,9 +6,12 @@ public class PlayerCamera : MonoBehaviour
 {
     [Header("Mouse Sensibility")]
     [SerializeField]
-    float sensX;
+    public float sensX;
     [SerializeField]
-    float sensY;
+    public float sensY;
+
+    [SerializeField]
+    PlayerSettings ps;
 
     [Header("Other Settings")]
     [SerializeField]
@@ -33,8 +36,8 @@ public class PlayerCamera : MonoBehaviour
         if (inMenu)
             return;
 
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * (600f * (ps.camSen / 100.0f)); //sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * (600f * (ps.camSen / 100.0f)); //sensY;
 
         yRotation += mouseX;
 
