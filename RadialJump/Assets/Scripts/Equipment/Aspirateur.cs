@@ -1,18 +1,15 @@
-using System;
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Aspirateur : Weapon
 {
     [Header("VR")]
-    [SerializeField] XRNode xrNode = XRNode.RightHand;
+    public XRController controller;
+    public InputHelpers.Button grapButton;
+    public InputHelpers.Button repulseButton;
     public bool bOnVr = false;
-    
-    InputFeatureUsage<bool> triggerUsage = CommonUsages.triggerButton;
-    InputFeatureUsage<bool> gripUsage = CommonUsages.gripButton;
-    InputDevice device;
-    private bool previousGripButtonState;
-    
+
+    private bool previousGrapState;
     
     public float ObjDistance = 1;
     public float offset;
@@ -27,8 +24,6 @@ public class Aspirateur : Weapon
     public float repulseForceAmount = 0.3f;
     public AudioClip repulseSound;
 
-    private void OnEnable() => device = InputDevices.GetDeviceAtXRNode(xrNode);
-
     // Update is called once per frame
     void Update()
     {
@@ -39,40 +34,33 @@ public class Aspirateur : Weapon
         if (currentCadence < cadenceCD)
             currentCadence += Time.deltaTime;
         
-        bool triggerButtonPressed = false;
-        bool gripButtonPressed = false;
-        if (device is { isValid: true })
+        bool repulseButtonPressed = false;
+        bool grapButtonPressed = false;
+        if (controller)
         {
-            device.TryGetFeatureValue(triggerUsage, out triggerButtonPressed);
-            device.TryGetFeatureValue(gripUsage, out gripButtonPressed);
+            controller.inputDevice.IsPressed(grapButton, out grapButtonPressed);
+            controller.inputDevice.IsPressed(repulseButton, out repulseButtonPressed);
         }
-        else
-        {
-            device = InputDevices.GetDeviceAtXRNode(xrNode);
-        }
-
-        bool gripButtonDown = !previousGripButtonState && gripButtonPressed;
-        bool gripButtonUp = previousGripButtonState && !gripButtonPressed;
+        
+        bool grapButtonDown = !previousGrapState && grapButtonPressed;
+        bool grapButtonUp = previousGrapState && !grapButtonPressed;
         // Drag the object to the player
-        if (canBeUse && (Input.GetMouseButtonDown(twoHanded ? 0 : hand.cote == 1 ? 1 : 0) || gripButtonDown) && currentCadence > cadenceCD)
+        if (canBeUse && (Input.GetMouseButtonDown(twoHanded ? 0 : hand.cote == 1 ? 1 : 0) || grapButtonDown) && currentCadence > cadenceCD)
         {
             Tir();
-            Debug.Log("Tir");
         }
 
         // Release the object
-        if (grabObj && canBeUse && (Input.GetMouseButtonUp(0) || gripButtonUp)) {
+        if (grabObj && canBeUse && (Input.GetMouseButtonUp(0) || grapButtonUp)) {
             Lacher();
-            Debug.Log("Lacher");
         }
 
         // Repulse the object
-        if (grabObj && canBeUse && (Input.GetMouseButton(1) || triggerButtonPressed)) {
+        if (grabObj && canBeUse && (Input.GetMouseButton(1) || repulseButtonPressed)) {
             Repulse();
-            Debug.Log("Repulse");
         }
 
-        previousGripButtonState = gripButtonPressed;
+        previousGrapState = grapButtonPressed;
     }
 
     private void FixedUpdate() {
