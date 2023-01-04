@@ -20,9 +20,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Credits.unity
     guid: ad39e0a3fd7e3dc45860017c24b32612
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VR.unity
     guid: 190b3b05a246a354da37f53cbf735e65
+  - enabled: 1
+    path: Assets/Scenes/VR_Hugo_Scene.unity
+    guid: 72dbbf8dc082484449618e8ff85ff41c
+  - enabled: 1
+    path: Assets/Scenes/VR_Credits.unity
+    guid: e17ec2d981eac634796ec3fdbca6ab94
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 908d2e1ae79a5e84e9a32e1b0577633d,
       type: 2}
